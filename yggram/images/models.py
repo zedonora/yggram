@@ -25,6 +25,11 @@ class Image(TimeStampedModel):
     # 유저가 생성한 모든 이미지들은 이제 필드 이름 images 안에 있다.
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True, related_name='images')
 
+    # property는 function이면서 데이터베이스랑 연동되는 값이 아니라 기본적으로 가지고 있는 값
+    @property
+    def like_count(self):
+        return self.likes.all().count()
+
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
 
