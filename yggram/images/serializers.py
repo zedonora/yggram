@@ -3,6 +3,16 @@ from . import models
 from yggram.users import models as user_models
 
 
+class UserProfileImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Image
+        fields = (
+            'file',
+            'like_count',
+            'comment_count'
+        )
+
+
 class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
