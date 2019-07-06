@@ -132,3 +132,36 @@ class Comment(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except models.Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class Search(APIView):
+
+    def get(self, request, format=None):
+
+        hashtags = request.query_params.get('hashtags', None)
+
+        if hashtags is not None:
+            hashtags = hashtags.split(",")
+
+            # deep relationship을 검색하는 방법
+            # title: 'hello',
+            # location: 'bogota'
+            # creator: (User:
+            #     id:1,
+            #     username:'nomadmin'
+            # )
+
+            # models.Image.objects.filter(location='bogota')
+            # models.Image.objects.filter(creator__username='nomadmin')
+            # models.Image.objects.filter(creator__username__exact='nomadmin')
+            # models.Image.objects.filter(creator__username__contain='noma')
+            # models.Image.objects.filter(creator__username__icontain='Noma')
+            # [4,5,6]
+            # filter(id__in=[4,5,6])
+            images = models.Image.objects.filter(tags__name__in=hashtags).distinct()
+
+            serializer = serializers.CountImageSerializer(images, many=True)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

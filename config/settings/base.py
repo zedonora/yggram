@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",  # REST framework
+    'taggit',  # Tags for the photos
 ]
 
 LOCAL_APPS = [
@@ -265,3 +266,5 @@ SOCIALACCOUNT_ADAPTER = "yggram.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+# 해시태그 대소문자 구분없이 적용 설정.
+TAGGIT_CASE_INSENSITIVE = True

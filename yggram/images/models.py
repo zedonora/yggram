@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from taggit.managers import TaggableManager
 from yggram.users import models as user_models
 # Create your models here.
 
@@ -24,6 +25,8 @@ class Image(TimeStampedModel):
     caption = models.TextField()
     # 유저가 생성한 모든 이미지들은 이제 필드 이름 images 안에 있다.
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True, related_name='images')
+    # 해시태그
+    tags = TaggableManager()
 
     # property는 function이면서 데이터베이스랑 연동되는 값이 아니라 기본적으로 가지고 있는 값
     @property
