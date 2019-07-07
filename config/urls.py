@@ -15,6 +15,7 @@ urlpatterns = [
     # User management
     path("users/", include("yggram.users.urls", namespace="users")),
     path("images/", include("yggram.images.urls", namespace="images")),
+    path("notifications/", include("notifications.urls", namespace="notifications")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

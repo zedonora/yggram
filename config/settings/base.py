@@ -78,7 +78,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "yggram.users.apps.UsersConfig",
     # Your stuff: custom apps go here
-    "yggram.images.apps.ImagesConfig",
+    "yggram.images.apps.ImagesConfig",  # images app
+    "notifications.apps.NotificationsConfig",  # notifications app
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

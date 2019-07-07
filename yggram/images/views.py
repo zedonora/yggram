@@ -42,6 +42,8 @@ class LikeImage(APIView):
 
         user = request.user
 
+        # create notification for like
+
         try:
             found_image = models.Image.objects.get(id=id)
         except models.Image.DoesNotExist:
@@ -69,7 +71,9 @@ class LikeImage(APIView):
 
 
 class UnLikeImage(APIView):
+
     def delete(self, request, id, format=None):
+
         user = request.user
 
         try:
@@ -99,6 +103,8 @@ class CommentOnImage(APIView):
 
         # user는 요청한 유저ID를 가져가게 되어 있다.
         user = request.user
+
+        # create notification for comment
 
         try:
             # 해당 이미지는 이미지 ID와 같은 ID를 갖고 있다. 그 이미지 ID는 URL에서 왔다.
