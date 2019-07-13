@@ -67,4 +67,19 @@ class ImageSerializer(serializers.ModelSerializer):
                   "caption",
                   "comments",
                   "like_count",
-                  'creator')
+                  'creator',
+                  'created_at')
+
+
+class InputImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        # "file": ["파일이 제출되지 않았습니다."],"caption": ["이 필드는 필수 항목입니다."] 이와 같은 필수값 에러를 피하기 위한 방법 1
+        # file = serializers.FileField(required=False) => 이방법은 serializer를 변경하는 방법임.
+        model = models.Image
+        fields = (
+            'file',
+            'location',
+            'caption',
+        )

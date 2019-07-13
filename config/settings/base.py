@@ -269,3 +269,14 @@ SOCIALACCOUNT_ADAPTER = "yggram.users.adapters.SocialAccountAdapter"
 # ------------------------------------------------------------------------------
 # 해시태그 대소문자 구분없이 적용 설정.
 TAGGIT_CASE_INSENSITIVE = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': {
+        'rest_framework.permissions.IsAuthenticated',
+    },
+    'DEFAULT_AUTHENTICATION_CLASSES': {
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication'
+    }
+}
